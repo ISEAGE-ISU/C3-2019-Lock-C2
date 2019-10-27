@@ -1,0 +1,8 @@
+{
+  "title": "LOCK C2",
+  "teamnumber": 40,
+  "loadmodules": [
+    "slowset",
+    "golock"
+  ]
+}

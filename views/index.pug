@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div.row
+    div.col-md-8
+      p Welcome to #{cname} branch ##{teamnumber}'s lock controller interface
+      p There are currently #{count} locks registered with this application.
+    div.col-md-4(align="right")
+      h3 Loaded Modules
+      ul
+      for l in loadmodules
+        li #{l}
