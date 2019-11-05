@@ -4,5 +4,21 @@
   "loadmodules": [
     "slowset",
     "golock"
-  ]
+  ],
+  "database": {
+    "server": "10.0.115.103",
+    "authentication": {
+      "type": "default",
+      "options": {
+        "userName": "sa",
+        "password": "cdc"
+      }
+    },
+    "options": {
+      "encrypt": false,
+      "fallbackToDefaultDb": true,
+      "instanceName": "SQLEXPRESS",
+      "database": "c2"
+    }
+  }
 }

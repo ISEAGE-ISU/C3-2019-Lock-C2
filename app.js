@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-
 // require('ip_serializer'); // TODO Uncomment this for fun and profit
 
 var app = express();
@@ -24,6 +23,9 @@ var middleware = {
     next()
   }
 };
+
+global.app_settings = require('./config');
+var db = require('./src/db_wrapper');
 
 app.use(middleware.globalsettings);
 
