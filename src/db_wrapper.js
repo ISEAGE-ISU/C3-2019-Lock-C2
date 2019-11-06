@@ -1,9 +1,9 @@
 const sql = require('mssql');
 
-const config = app_settings.database;
+let config = app_settings.database;
 
-const pool = new sql.ConnectionPool(config)
-const con = pool.connect()
+const pool = new sql.ConnectionPool(config);
+const con = pool.connect();
 
 pool.on('error', err => {
     // ... error handler
