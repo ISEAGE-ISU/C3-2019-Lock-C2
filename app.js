@@ -1,4 +1,3 @@
-'use strict';
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-
+// This MUST come before any imports of app-defined things.
+// Failure to do so is known to make things crash hard
 global.app_settings = require('./config');
 var db = require('./src/db_wrapper');
 db.test_bd();
@@ -54,7 +54,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
+  res.locals.message = "eat pant";
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
