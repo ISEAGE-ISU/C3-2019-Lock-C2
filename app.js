@@ -26,6 +26,7 @@ var middleware = {
 
 global.app_settings = require('./config');
 var db = require('./src/db_wrapper');
+db.test_bd()
 
 app.use(middleware.globalsettings);
 

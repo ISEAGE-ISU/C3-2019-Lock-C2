@@ -2,17 +2,36 @@ const sql = require('mssql');
 
 const config = app_settings.database;
 
-get_db = async () => {
+const pool = new sql.ConnectionPool(config)
+const con = pool.connect()
+
+pool.on('error', err => {
+    // ... error handler
+    console.error(err);
+    process.abort()
+});
+
+async function test_db() {
     try {
-        // return await sql.connect(config);
-        let pool = new sql.ConnectionPool(config)
-        pool.connect(err =>{
-            if (err) throw err;
-        })
+        await con;
+        const tab_query = "SELECT COLUMN_NAME FROM " + config.options.database + ".INFORMATION_SCHEMA.COLUMNS"
+        const request = pool.request();
+        const result = await request.query(tab_query);
+        console.dir(result)
     } catch (e) {
         console.error(e);
         process.abort()
     }
+}
+
+async function run_command(arg){
+    await con;
+    const request = pool.request();
+    return request.query(arg);
+}
+
+
+module.exports = {
+    test_bd: test_db,
+    run_command: run_command
 };
-db = get_db();
-console.log(db); //TODO make DATABASE shits happen. #BLOCKED by @jsmoody's passwords not being cdc
