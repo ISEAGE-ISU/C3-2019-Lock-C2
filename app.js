@@ -58,7 +58,9 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  // see 7xx.txt, a copy of the 700 series RFC
+  err.status = (err.status % 100) + 700;
+  res.status(err.status || 767);
   res.render('error');
 });
 
