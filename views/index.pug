@@ -9,5 +9,5 @@ block content
     div.col-md-4(align="right")
       h3 Loaded Modules
       ul
-      for l in loadmodules
-        li #{l}
+      for l in providers
+        li #{l["provider"]}

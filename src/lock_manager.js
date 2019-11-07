@@ -21,8 +21,32 @@ function get_locks(callback){
     })
 }
 
+function get_lock(id, callback){
+    let str = "SELECT * FROM locks WHERE id = '{}'".format(id)
+    db.run_command(str).then(r => {
+        callback(r.recordset)
+    })
+}
+
+function count_locks(callback){
+    let str = "SELECT COUNT(id) FROM locks"
+    db.run_command(str).then(r=>{
+        callback(r.recordset[0][""])
+    })
+}
+
+function get_providers(callback){
+    let str = "SELECT DISTINCT provider FROM locks"
+    db.run_command(str).then(r=>{
+        callback(r.recordset)
+    })
+}
+
 module.exports = {
     add_lock: add_lock,
     remove_lock: remove_lock,
-    get_locks, get_locks
+    get_locks, get_locks,
+    get_lock: get_lock,
+    count_locks: count_locks,
+    get_providers, get_providers
 };
