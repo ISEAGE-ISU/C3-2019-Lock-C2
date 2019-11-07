@@ -18,7 +18,9 @@ router.get('/test', function (req, res, next) {
 });
 
 router.get('/register', function (req, res, next) {
-    res.send(locks);
+    lm.get_locks(l => {
+        res.json(l);
+    })
 });
 
 router.post('/register', function (req, res, next) {
@@ -31,7 +33,7 @@ router.post('/register', function (req, res, next) {
     };
     locks.push(lock);
     lm.add_lock(lock).then(value => {
-        res.send(JSON.stringify(lock));
+        res.json(value)
     })
 });
 
