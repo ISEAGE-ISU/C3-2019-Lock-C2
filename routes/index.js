@@ -1,12 +1,16 @@
 var express = require('express');
 const lm = require("../src/lock_manager");
 var router = express.Router();
+var f = require('faker')
 
-/* GET home page. */
+
+/**
+ *
+ */
 router.get('/', function (req, res, next) {
     lm.count_locks(c => {
       lm.get_providers(p => {
-        res.render('index', {count: c, providers: p});
+        res.render('index', {count: c, providers: p, email:f.internet.email(), slogan:f.company.catchPhrase()});
       })
     })
 });

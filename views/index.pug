@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  h1= title
+  h1.text-center(align="center")= title
+  h2.text-center(align="center")= slogan
   div.row
     div.col-md-8
       p Welcome to #{cname} branch ##{teamnumber}'s lock controller interface
@@ -11,3 +12,4 @@ block content
       ul
       for l in providers
         li #{l["provider"]}
+  p Contact #{email} with questions/complaints
