@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{lock_c2/node_modules}" />
-    <file url="PROJECT" libraries="{@types/express, @types/http-errors, lock_c2/node_modules}" />
+    <file url="PROJECT" libraries="{@types/express, @types/http-errors, jquery-3.3.1.slim, lock_c2/node_modules}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>
