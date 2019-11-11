@@ -1,7 +1,7 @@
 {
   "name": "lock-c2",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node ./bin/www",
     "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json",
