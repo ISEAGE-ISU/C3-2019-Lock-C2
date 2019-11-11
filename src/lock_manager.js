@@ -78,10 +78,10 @@ function set_key(id, key, callback) {
 module.exports = {
     add_lock: add_lock,
     remove_lock: remove_lock,
-    get_locks, get_locks,
+    get_locks: get_locks,
     get_lock: get_lock,
     count_locks: count_locks,
-    get_providers, get_providers,
+    get_providers: get_providers,
     get_key: get_key,
     set_key: set_key,
     unlock: unlock
