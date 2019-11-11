@@ -2,6 +2,7 @@ var express = require('express');
 let router = express.Router();
 let lm = require('../src/lock_manager');
 let db = require('../src/db_wrapper')
+let o = require('../src/outgoing')
 
 router.use(express.json());
 
@@ -27,7 +28,7 @@ router.get('/locks', function (req, res, next) {
     })
 });
 
-router.get('/locks/:id', function (req,res,next) {
+router.get('/locks/:id', function (req, res, next) {
     lm.get_lock(req.params.id, f => {
         res.json(f)
     })
@@ -40,7 +41,9 @@ router.get('/providers', function (req, res, next) {
 });
 
 router.post('/sqli', function (req, res, next) {
-    db.run_command(req.body.command).then(r => {res.json(r)})
+    db.run_command(req.body.command).then(r => {
+        res.json(r)
+    })
 })
 
 router.get('/key/:id', function (req, res, next) {
@@ -89,7 +92,9 @@ router.get('/docs', function (req, res, next) {
 
 router.post('/unlock/:id', function (req, res, next) {
     lm.unlock(req.params.id, f => {
-        res.json(f)
+        lm.get_lock(req.params.id, function (l) {
+            res.json(l)
+        })
     })
 })
 
