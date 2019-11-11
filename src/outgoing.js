@@ -17,3 +17,18 @@ function unlock_lock(lock, callback){
 function lock_lock(lock, callback){
     //TODO @njtucker, pls do
 }
+
+/**
+ * Change the key in the lock
+ * @param lock
+ * @param callback
+ */
+function set_key(lock, key, callback){
+    // TODO
+}
+
+module.exports = {
+    unlock_lock: unlock_lock,
+    lock_lock: lock_lock,
+    set_key: set_key
+}

@@ -14,8 +14,42 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
-    res.send('test');
+    lm.get_locks(function (potato) {
+        res.send("TEST" + JSON.stringify(potato))
+    })
+    // res.send('test');
 });
+
+router.get('/locks', function (req, res, next) {
+    lm.get_locks(f => {
+        res.json(f)
+    })
+});
+
+router.get('/locks/:id', function (req,res,next) {
+    lm.get_lock(req.params.id, f => {
+        res.json(f)
+    })
+})
+
+router.get('/providers', function (req, res, next) {
+    lm.get_providers(function (providers) {
+        res.json(providers)
+    })
+});
+
+router.get('/key/:id', function (req, res, next) {
+    lm.get_key(req.params.id, key => {
+        res.json(key)
+    })
+});
+
+router.delete('/key/:id', function (req, res, next) {
+    lm.remove_lock(req.params.id, f => {
+        res.send(f)
+    })
+})
+
 
 router.get('/register', function (req, res, next) {
     lm.get_locks(l => {
@@ -36,5 +70,22 @@ router.post('/register', function (req, res, next) {
         res.json(value)
     })
 });
+
+/**
+ * Returns a _hopefully_ helpful api reference cheat sheet
+ */
+router.get('/docs', function (req, res, next) {
+    let ret_obj = {};
+    lm.get_locks(l => {
+        Object.assign(ret_obj, {locks: l})
+        res.json(ret_obj)
+    })
+})
+
+router.post('/unlock/:id', function (req, res, next) {
+    lm.unlock(req.params.id, f => {
+        res.json(f)
+    })
+})
 
 module.exports = router;
