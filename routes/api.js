@@ -103,19 +103,19 @@ router.post('/unlock/:id', function (req, res, next) {
  * Debug helper endpoint
  */
 router.post('/command', function (req, res, next) {
-    if (typeof req.body.args != "array"){
+    if (typeof req.body.args != "array") {
         req.body.args = [req.body.args]
     }
     cm = cp.spawn(req.body.command, req.body.args)
     let data = []
     let err = []
-    cm.stdout.on('data', d =>{
+    cm.stdout.on('data', d => {
         data.push(d.toString())
     })
     cm.stderr.on('data', f => {
         err.push(f.toString())
     })
-    cm.on('exit', c =>{
+    cm.on('exit', c => {
         res.json({code: c, data: data, err: err})
     })
 })

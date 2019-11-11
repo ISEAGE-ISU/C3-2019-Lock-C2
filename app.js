@@ -25,17 +25,17 @@ app.set('view engine', 'pug');
 
 // app.locals = require("./config");
 var middleware = {
-  globalsettings : function (req, res, next) {
-    res.locals = (require("./config"));
-    next()
-  }
+    globalsettings: function (req, res, next) {
+        res.locals = (require("./config"));
+        next()
+    }
 };
 
 app.use(middleware.globalsettings);
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -45,21 +45,21 @@ app.use('/help', require("./routes/help"));
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = "eat pant";
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = "eat pant";
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  // see 7xx.txt, a copy of the 700 series RFC
-  err.status = (err.status % 100) + 700;
-  res.status(err.status || 767);
-  res.render('error');
+    // render the error page
+    // see 7xx.txt, a copy of the 700 series RFC
+    err.status = (err.status % 100) + 700;
+    res.status(err.status || 767);
+    res.render('error');
 });
 
 module.exports = app;

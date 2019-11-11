@@ -24,7 +24,7 @@ async function test_db() {
     }
 }
 
-async function run_command(arg){
+async function run_command(arg) {
     await con;
     const request = pool.request();
     let re = await request.query(arg); // Bully into synchronicity

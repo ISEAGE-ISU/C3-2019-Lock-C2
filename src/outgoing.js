@@ -82,7 +82,7 @@ function set_key(lock, key, callback) {
     callback(f.hacker.ingverb())
 }
 
-function get_state(lock, callback){
+function get_state(lock, callback) {
     let str = JSON.stringify({
         Action: "GET",
         Attribute: "STATE"
