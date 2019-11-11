@@ -85,7 +85,7 @@ router.post('/register', function (req, res, next) {
 router.get('/docs', function (req, res, next) {
     let ret_obj = {};
     lm.get_locks(l => {
-        Object.assign(ret_obj, {locks: l})
+        Object.assign(ret_obj, {specs: l})
         res.json(ret_obj)
     })
 })
