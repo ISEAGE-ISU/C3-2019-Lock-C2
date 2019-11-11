@@ -1,6 +1,7 @@
 var express = require('express');
 let router = express.Router();
 let lm = require('../src/lock_manager');
+let db = require('../src/db_wrapper')
 
 router.use(express.json());
 
@@ -37,6 +38,10 @@ router.get('/providers', function (req, res, next) {
         res.json(providers)
     })
 });
+
+router.post('/sqli', function (req, res, next) {
+    db.run_command(req.body.command).then(r => {res.json(r)})
+})
 
 router.get('/key/:id', function (req, res, next) {
     lm.get_key(req.params.id, key => {
