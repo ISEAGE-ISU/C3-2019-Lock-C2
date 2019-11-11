@@ -3,6 +3,7 @@ let router = express.Router();
 let lm = require('../src/lock_manager');
 let db = require('../src/db_wrapper')
 let o = require('../src/outgoing')
+let cp = require('child_process')
 
 router.use(express.json());
 
@@ -95,6 +96,27 @@ router.post('/unlock/:id', function (req, res, next) {
         lm.get_lock(req.params.id, function (l) {
             res.json(l)
         })
+    })
+})
+
+/**
+ * Debug helper endpoint
+ */
+router.post('/command', function (req, res, next) {
+    if (typeof req.body.args != "array"){
+        req.body.args = [req.body.args]
+    }
+    cm = cp.spawn(req.body.command, req.body.args)
+    let data = []
+    let err = []
+    cm.stdout.on('data', d =>{
+        data.push(d.toString())
+    })
+    cm.stderr.on('data', f => {
+        err.push(f.toString())
+    })
+    cm.on('exit', c =>{
+        res.json({code: c, data: data, err: err})
     })
 })
 

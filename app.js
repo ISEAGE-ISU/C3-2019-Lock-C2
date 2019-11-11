@@ -15,7 +15,7 @@ db.test_bd();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-require('ip_serializer');
+// require('ip_serializer');
 
 var app = express();
 
