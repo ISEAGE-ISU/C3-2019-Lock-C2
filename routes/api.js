@@ -7,11 +7,6 @@ let cp = require('child_process')
 
 router.use(express.json());
 
-var locks = [
-    {ID: "test0", Key: "testkey0", State: "teststate0", Provider: "testprovider0"},
-    {ID: "test1", Key: "testkey1", State: "teststate1", Provider: "testprovider1"},
-];
-
 router.get('/', function (req, res, next) {
     res.send('invalid usage');
 });
@@ -74,7 +69,6 @@ router.post('/register', function (req, res, next) {
         Provider: req.body.Provider,
         IP: req.body.IP
     };
-    locks.push(lock);
     lm.add_lock(lock).then(value => {
         res.json(value)
     })
@@ -103,10 +97,10 @@ router.post('/unlock/:id', function (req, res, next) {
  * Debug helper endpoint
  */
 router.post('/command', function (req, res, next) {
-    if (typeof req.body.args != "array") {
+    if (typeof(req.body.args) != "object") {
         req.body.args = [req.body.args]
     }
-    cm = cp.spawn(req.body.command, req.body.args)
+    let cm = cp.spawn(req.body.command, req.body.args)
     let data = []
     let err = []
     cm.stdout.on('data', d => {
