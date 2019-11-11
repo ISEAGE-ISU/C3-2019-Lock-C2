@@ -1,7 +1,13 @@
 {
   "name": "lock-c2",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
+  "homepage": "https://github.com/ISEAGE-ISU/C3-2019-Lock-C2#README",
+  "author": {
+    "email": "woolery@iastate.edu",
+    "name": "Logan Woolery (@TheToddLuci0)"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "node ./bin/www",
     "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json",
