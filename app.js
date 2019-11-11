@@ -15,7 +15,7 @@ db.test_bd();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-require('ip_serializer'); // TODO Uncomment this for fun and profit
+require('ip_serializer');
 
 var app = express();
 
@@ -30,8 +30,6 @@ var middleware = {
     next()
   }
 };
-
-
 
 app.use(middleware.globalsettings);
 
