@@ -11,6 +11,8 @@ global.app_settings = require('./config');
 var db = require('./src/db_wrapper');
 db.test_bd();
 
+var setup_admin = require('./src/utils');
+setup_admin.setup_admin();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
