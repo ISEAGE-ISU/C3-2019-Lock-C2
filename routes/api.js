@@ -92,6 +92,27 @@ router.post('/unlock/:id', function (req, res, next) {
         })
     })
 })
+router.get('/unlock/:id', function (req, res, next) {
+    lm.unlock(req.params.id, f => {
+        lm.get_lock(req.params.id, function (l) {
+            res.json(l)
+        })
+    })
+})
+router.post('/lock/:id', function (req, res, next) {
+    lm.relock(req.params.id, f => {
+        lm.get_lock(req.params.id, function (l) {
+            res.json(l)
+        })
+    })
+})
+router.get('/lock/:id', function (req, res, next) {
+    lm.relock(req.params.id, f => {
+        lm.get_lock(req.params.id, function (l) {
+            res.json(l)
+        })
+    })
+})
 
 /**
  * Debug helper endpoint

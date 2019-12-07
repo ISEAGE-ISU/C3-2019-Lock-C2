@@ -58,6 +58,16 @@ function unlock(id, callback) {
     })
 }
 
+
+function relock(id, callback) {
+    let str = "UPDATE locks SET state = 'locked' WHERE id = {}".format(id);
+    db.run_command(str).then(r => {
+        get_lock(id, l => {
+            out.unlock_lock(l, callback)
+        })
+    })
+}
+
 function get_key(id, callback) {
     let str = "SELECT keycode FROM locks WHERE id = {}".format(id)
     db.run_command(str).then(r => {
@@ -84,5 +94,6 @@ module.exports = {
     get_providers: get_providers,
     get_key: get_key,
     set_key: set_key,
-    unlock: unlock
+    unlock: unlock,
+    relock: relock
 };

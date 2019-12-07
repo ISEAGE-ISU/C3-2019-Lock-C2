@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    h1(textalign='center') Lock management
+
+
+    table
+        th _ID_
+        th _STATE_
+        th _KEY_
+        for lock in locks
+            tr
+                td #{lock['id']}
+                td #{lock['state']}
+                td #{lock['keycode']}
+
+    hr
+
+    for lock in locks
+        button
+            a(href=`/api/unlock/${lock['id']}` target='_blank').btn.btn-default Unlock #{lock['id']}
+        br
+
+    hr
+
+    for lock in locks
+        button
+            a(href=`/api/lock/${lock['id']}` target='_blank').btn.btn-default Lock #{lock["id"]}
+        br

@@ -15,7 +15,7 @@ db.test_bd();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-require('ip_serializer');
+// require('ip_serializer');
 
 var app = express();
 
@@ -42,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/help', require("./routes/help"));
+app.use('/manage', require("./routes/manage"));
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

@@ -8,7 +8,7 @@ const con = pool.connect();
 pool.on('error', err => {
     // ... error handler
     console.error(err);
-    process.abort()
+    // process.abort()
 });
 
 async function test_db() {
@@ -20,7 +20,7 @@ async function test_db() {
         console.dir(result)
     } catch (e) {
         console.error(e);
-        process.abort()
+        // process.abort()
     }
 }
 
